@@ -1,61 +1,135 @@
------------------------------------------Lista de Tarefas do Zucco------------------------------------------------------
-Basicamente, o código é feito em HTML, CSS, JavaScript e JAVA, utilizando SpringBoot, Lombok e PostGres.
-Este código tem a ideia principal de criar uma lista de tarefas, onde o usuário consegue adicionar as tarefas
-pressionando o botão ADICIONAR e escrevendo no campo de texto o nome desta tarefa. Antes de adicionar, o usuário
-consegue marcar a caixa "Está concluida?" que tem a função de deixar a nova tarefa já marcada como concluída.
-Caso o usuário somente adicione a tarefa, após adicionada, a mesma aparece na tabela logo abaixo, onde podemos marcar
-como concluída ou excluir a mesma.
+# 📝 Lista de Tarefas do Zucco | Zucco's Task List
 
--- Começamos nosso código pela estruturação, onde temos a pasta principal. 
-- Após isso, vem as pastas src > main > java > com > fag.
-- Dentro desta pasta, temos duas outras pastas MUITO importantes, onde dentro delas temos a nossa estrutura base.
+---
 
--- Na pasta listadetarefasdozucco, temos algumas outras pastas muito importantes, como:
--A pasta controller:
-    Onde está o arquivo "ControladorTarefa" que atua como o nosso controlador do SpringBoot para a nossa aplicação.
-    Esse controlador manipula as requisições HTTP relacionada as operações CRUD que estão la no arquivo "TarefaService".
-    Suas funções principais são:
-        Salvar uma Nova tarefa;
-        Atualizar uma tarefa;
-        Encontrar uma tarefa por ID;
-        Listar todas as tarefas; 
-        E excluir uma tarefa.
+## 🇧🇷 Português
 
--A pasta model:
-    Onde está localizado o arquivo "Tarefa", arquivo este que representa um modelo de dados para a entidade "Tarefa" dentro
-    do app. A classe é mapeada para uma tabela no banco de dados usando JPA.
-    Basicamente, este arquivo representa a estrutura das entradas na tabela "Tarefa" do banco de dados.
-    Utilizei o Lombok de plugin para simplificar a criação de métodos getter e setter, pra reduzir o tamanho do código.
-    Dentro deste código é configurado uma geração automática do ID para ser gerenciada pelo Banco de Dados.
-    Este arquivo serve como ponto de partida para a criação de instâncias de tarefas na aplicação e persistência das mesmas
-    dentro do banco de dados.
+### 📌 Descrição do Projeto
+O **Lista de Tarefas do Zucco** é uma aplicação web desenvolvida para o gerenciamento de tarefas, permitindo que o usuário adicione, visualize, marque como concluídas e exclua tarefas de forma simples e intuitiva.
 
--A pasta repository:
-    Nesta pasta temos o arquivo "RepositorioTarefa" que representa um repositório de dados para entidade "Tarefa" dentro do App.
-    Repositório este que se estende a interface "CrudRepository" do SpringData, fornecendo métodos básicos para realizar
-    as operações CRUD no banco de dados.
+O usuário pode inserir o nome da tarefa em um campo de texto e adicioná-la ao sistema por meio do botão **ADICIONAR**. Antes da criação, é possível marcar a opção **"Está concluída?"**, fazendo com que a tarefa já seja registrada como concluída.  
+Após adicionada, a tarefa é exibida em uma tabela, onde pode ser atualizada (marcada como concluída) ou removida.
 
--A pasta service:
-  Temos o arquivo "TarefaService" que basicamente é responsável por se comunicar com o banco de dados por meio do "TaskRepository".
-  E as operações CRUD básicas (tipo salvar, encontrar por ID, excluir e listar).
+---
 
--E o arquivo listadetarefasApp:
-    Arquivo este que é o que usamos para executar a nossa aplicação.
-    É o arquivo base de tudo, arquivo este que é definido como principal através da linha "@SpringBootApplication".
-    A partir disto, o mesmo acessa toda pasta do nosso código, dando inicio a aplicação.
+### 🎯 Motivação e Justificativa
+Este projeto foi desenvolvido durante as aulas da faculdade com o objetivo de **exercitar e consolidar os conhecimentos adquiridos** em desenvolvimento web e back-end.
 
--- Já na pasta resources, temos a pasta static:
-- Onde temos o arquivo "index.html" onde temos todo FrontEnd do código, utilizando o STYLE para podermos alterar
-- algumas informações visuais da tela, tipo, espaçamento entre os botões, a cor dos botões e etc.
-- Dentro da tag "body" temos os botões, a tabela, os inputs (tipo a caixa de texto) e as demais informações.
-- E dentro da tag "script" temos todo nosso JavaScript onde temos as nossas funções, sendo elas:
-    adicionarTarefa(); **Responsável por criar uma nova tarefa**
-    atualizarTabelaTarefas();  **Atualiza a tabela de tarefas chamando a API de backend para obter a lista atualizada.**
-    marcarTarefaComoConcluida();  **Marca uma tarefa como concluída.**
-    excluirTarefa();  **Exclui uma tarefa.**
-    criarBotaoExcluir(); **Cria um botão "Excluir" para cada tarefa na tabela.**
-    atualizarTabelaTarefas(). **Atualiza a tabela de tarefas ao inicializar a página.**
-- 
--- E ainda dentro da Resources, temos o arquivo application.properties:
-- Onde temos algumas informações referente ao acesso ao banco de dados.
+A proposta do projeto é simular um cenário real de desenvolvimento de software, integrando uma interface web com uma API REST e um banco de dados relacional, aplicando conceitos fundamentais de arquitetura e organização de código.
 
+---
+
+### 🛠️ Tecnologias Utilizadas
+- **HTML, CSS e JavaScript** — Construção da interface e interações do usuário;
+- **Java com Spring Boot** — Desenvolvimento da API REST e gerenciamento das requisições HTTP;
+- **Lombok** — Redução de código repetitivo e aumento da produtividade;
+- **PostgreSQL** — Persistência e gerenciamento dos dados das tarefas.
+
+---
+
+### 🗂️ Estrutura do Projeto
+
+#### 📁 `listadetarefasdozucco`
+Pasta principal do projeto, responsável por conter toda a lógica da aplicação.
+
+##### 📁 `controller`
+Contém o arquivo `ControladorTarefa`, que atua como controlador Spring Boot da aplicação.  
+É responsável por manipular as requisições HTTP relacionadas às operações CRUD, delegando a lógica de negócio ao serviço.
+
+Principais responsabilidades:
+- Salvar uma nova tarefa;
+- Atualizar uma tarefa existente;
+- Buscar uma tarefa por ID;
+- Listar todas as tarefas;
+- Excluir uma tarefa.
+
+##### 📁 `model`
+Contém a classe `Tarefa`, que representa o modelo de dados da entidade **Tarefa**.  
+Essa classe é mapeada para uma tabela no banco de dados utilizando JPA.
+
+- Define a estrutura da tabela `Tarefa`;
+- Utiliza Lombok para gerar getters e setters automaticamente;
+- Possui geração automática de ID gerenciada pelo banco de dados;
+- Serve como base para criação e persistência das tarefas.
+
+##### 📁 `repository`
+Contém o arquivo `RepositorioTarefa`, responsável pela comunicação direta com o banco de dados.  
+Estende a interface `CrudRepository` do Spring Data, fornecendo métodos prontos para operações CRUD.
+
+##### 📁 `service`
+Contém a classe `TarefaService`, que concentra a lógica de negócio da aplicação.  
+É responsável por intermediar as operações entre o controller e o repositório, como:
+- Salvar;
+- Buscar por ID;
+- Listar;
+- Excluir tarefas.
+
+##### 📄 `listadetarefasApp`
+Arquivo principal da aplicação, responsável por iniciar o sistema.  
+É identificado pela anotação `@SpringBootApplication`, que carrega toda a configuração e inicia o Spring Boot.
+
+---
+
+#### 📁 `resources`
+
+##### 📁 `static`
+Contém o arquivo `index.html`, que representa todo o front-end da aplicação.
+
+- Utiliza CSS para estilização (cores, espaçamento, layout);
+- Contém botões, inputs, tabela e demais elementos visuais;
+- Inclui o JavaScript responsável pela interação com a API.
+
+Funções JavaScript principais:
+- `adicionarTarefa()` — Cria uma nova tarefa;
+- `atualizarTabelaTarefas()` — Atualiza a tabela chamando a API;
+- `marcarTarefaComoConcluida()` — Marca uma tarefa como concluída;
+- `excluirTarefa()` — Exclui uma tarefa;
+- `criarBotaoExcluir()` — Cria o botão de exclusão para cada tarefa;
+- `atualizarTabelaTarefas()` — Atualiza a tabela ao carregar a página.
+
+##### 📄 `application.properties`
+Arquivo de configuração da aplicação, contendo as informações de conexão com o banco de dados PostgreSQL.
+
+---
+
+### ✅ Considerações Finais
+A escolha de uma lista de tarefas como tema do projeto se deve à sua simplicidade conceitual aliada à aplicação de operações fundamentais de um sistema, como **CRUD (Create, Read, Update e Delete)**.
+
+O projeto contribui para o desenvolvimento da lógica de programação, organização de código, entendimento da arquitetura MVC e integração entre front-end, back-end e banco de dados em uma aplicação web moderna.
+
+---
+
+## 🇺🇸 English
+
+### 📌 Project Description
+**Zucco's Task List** is a web application developed for task management, allowing users to add, view, mark as completed, and delete tasks in a simple and intuitive way.
+
+Users can enter a task name into a text field and add it using the **ADD** button. Before adding the task, they can check the **"Is it completed?"** option, which registers the task as completed immediately.  
+Once added, the task appears in a table where it can be marked as completed or deleted.
+
+---
+
+### 🎯 Motivation and Purpose
+This project was developed during college classes with the purpose of **practicing and consolidating acquired knowledge** in both web and back-end development.
+
+The project simulates a real-world software development scenario by integrating a web interface with a REST API and a relational database, applying fundamental architectural concepts.
+
+---
+
+### 🛠️ Technologies Used
+- **HTML, CSS, and JavaScript** — User interface and interactions;
+- **Java with Spring Boot** — REST API development and HTTP request handling;
+- **Lombok** — Reducing boilerplate code;
+- **PostgreSQL** — Data persistence and task management.
+
+---
+
+### 🗂️ Project Structure
+The project follows a layered architecture with clear separation of responsibilities, including controller, service, repository, model, and front-end layers, following MVC principles.
+
+---
+
+### ✅ Final Notes
+Choosing a task list as the project theme allows the practical application of **CRUD (Create, Read, Update, Delete)** operations, enabling a complete understanding of data flow between front-end, back-end, and database layers.
+
+This project strengthens programming logic, code organization, MVC architecture understanding, and full-stack development skills.
